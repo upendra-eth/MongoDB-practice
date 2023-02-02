@@ -21,15 +21,13 @@ studentSchema = new mongoose.Schema({
 
 const Student = new mongoose.model("Student", studentSchema);
 
-const findStudents = async () => {
-  try {
-     const studentData = await Student.find({ rollno: {$eq:34}}).select({name:1,_id:0});
-    //  const studentData = await Student.find({ rollno: {$eq:34}}).select({name:1,_id:0}).count();
-    //  const studentData = await Student.find({name:"uv"}).select({name:1,_id:0});
-  
-      console.log(studentData);
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-findStudents();
+
+
+const deleteDocs= async (id_name) => {
+  // const data = await Student.deleteOne ({_id:id})
+  // const data = await Student.findByIdAndDelete ({_id:id})
+  const data = await Student.deleteMany({name:id_name})
+  console.log(data);
+}
+
+deleteDocs("raaja3")
